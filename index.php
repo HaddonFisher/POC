@@ -5,7 +5,9 @@
 		<title>Proof of Concept</title>
 	</head>
 	<body>
-		<?php echo "hello world"; ?>
+		<h1><?php echo "hello world"; ?></h1></br?
+		<?php print_r($_ENV["VCAP_SERVICES"]); ?>
+
 	 </body>
 
 <!-- 
