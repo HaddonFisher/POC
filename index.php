@@ -10,16 +10,19 @@
 		<?php echo "Check out this thing I sent you!";?><br><br>
 		<?php
 		
-		$mysql_username = "empty";
-		$mysql_password = "empty";
+		$country = 'united-states';
+		$jsonURL = "http://www.medalbot.com/api/v1/medals/";
 
-		$mysql_username = $_ENV["VCAP_SERVICES"][0][0][3];
-		$mysql_password = $_ENV["VCAP_SERVICES"][0][0][4];
-		
-		echo "My username is:" . $mysql_username . "<br>";
-		echo "My password is:" . $mysql_password . "<br>";
+		$fulljsonURL = $jsonURL . $country;
+		$json = file_get_contents($fulljsonURL);
+		$medal_array = json_decode($json);
+		?>
 
-		print($_ENV["VCAP_SERVICES"]);
+		<?php print_r($medal_array); ?>
+		<?php echo "You requested a Rio medal count for:" . $medal_array['country_name'];?>
+		<?php echo "Bronze:" . $medal_array['bronze_count'];?>
+		<?php echo "Silver:" . $medal_array['silver_count'];?>
+		<?php echo "Gold:" . $medal_array['gold_count'];?>
 
 		?>
 		</br></br>
